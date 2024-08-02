@@ -1,17 +1,3 @@
-// Service Worker Registration
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/static/js/service-worker.js')
-            .then(registration => {
-                console.log('Service Worker registered successfully:', registration);
-            })
-            .catch(error => {
-                console.log('Service Worker registration failed:', error);
-            });
-    });
-}
-
-// Add to Home Screen functionality
 let deferredPrompt;
 const addBtn = document.createElement('button');
 addBtn.style.display = 'none';
