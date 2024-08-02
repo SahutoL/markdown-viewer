@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Markdown Viewer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+</head>
+<body>
+    <header>
+        <h1>Markdown Viewer</h1>
+    </header>
+    <main>
+        <section class="upload-section">
+            <h2>ファイルをアップロード</h2>
+            <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" accept=".md,.markdown">
+                <button type="submit">アップロード</button>
+            </form>
+        </section>
+        <section class="file-list">
+            <h2>アップロードされたファイル</h2>
+            <ul>
+                {% for file in files %}
+                    <li>
+                        <a href="{{ url_for('view_file', filename=file) }}">
+                            {{ file }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
