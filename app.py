@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB limit
 
-ALLOWED_EXTENSIONS = {'md', 'markdown'}
+ALLOWED_EXTENSIONS = {'md', 'markdown', 'txt'}
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -27,8 +27,12 @@ def upload_file():
     if file.filename == '':
         return redirect(url_for('index'))
     if file and allowed_file(file.filename):
-        filename = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-        file.save(filename)
+        filename = file.filename
+        ext = filename.rsplit('.', 1)[1].lower()
+        if ext == 'txt':
+            filename = filename.rsplit('.', 1)[0] + '.md'
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(file_path)
     return redirect(url_for('index'))
 
 @app.route('/view/<filename>')
