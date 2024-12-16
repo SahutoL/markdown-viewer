@@ -15,7 +15,7 @@
         <section class="upload-section">
             <h2>Markdownファイルをアップロード</h2>
             <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data">
-                <input type="file" name="file" accept=".md,.markdown">
+                <input type="file" name="file" accept=".md,.markdown,.txt">
                 <button type="submit">アップロード</button>
             </form>
         </section>
