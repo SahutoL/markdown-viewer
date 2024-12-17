@@ -42,7 +42,14 @@ def view_file(filename):
     file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     with open(file_path, 'r', encoding='utf-8') as file:
         content = file.read()
-    html_content = markdown.markdown(content, extensions=['fenced_code', 'codehilite'])
+    html_content = markdown.markdown(
+        content,
+        extensions=['fenced_code', 'codehilite'],
+        output_format='html5',
+        extension_configs={
+            'markdown.extensions.extra': {'newline': True}
+        }
+    )
     safe_html = bleach.clean(html_content, tags=['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a', 'ul', 'ol', 'li', 'code', 'pre', 'strong', 'em', 'hr', 'br'])
     return render_template('viewer.html', content=safe_html, filename=filename)
 
