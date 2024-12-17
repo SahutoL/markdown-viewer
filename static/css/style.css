@@ -100,7 +100,8 @@ a:hover {
 .markdown-content {
     font-family: 'Hiragino Sans';
     font-size: 13.5px;
-    line-height: 18.0px;
+    line-height: 1.5;
+    letter-spacing: 0.018em;
     background-color: white;
     padding: 1.6rem;
     border-radius: 8px;
