@@ -2,9 +2,9 @@ import os, bleach, markdown, uuid
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory, session
 
 app = Flask(__name__)
-app.secret_key = os.get_environ('SECRET_KEY')
+app.secret_key = os.environ.get('SECRET_KEY')
 app.config['UPLOAD_FOLDER'] = 'uploads'
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB limit
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 ALLOWED_EXTENSIONS = {'md', 'markdown', 'txt'}
 
