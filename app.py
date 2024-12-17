@@ -56,11 +56,8 @@ def view_file(filename):
         content = file.read()
     html_content = markdown.markdown(
         content,
-        extensions=['fenced_code', 'codehilite'],
-        output_format='html5',
-        extension_configs={
-            'markdown.extensions.extra': {'newline': True}
-        }
+        extensions=['fenced_code', 'codehilite', 'nl2br'],
+        output_format='html5'
     )
     safe_html = bleach.clean(
         html_content,
